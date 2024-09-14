@@ -11,8 +11,6 @@ import {
   Row,
   Col,
   Modal,
-  Popover,
-  Dropdown,
 } from "antd";
 import {
   scenesCodeArr,
@@ -26,9 +24,6 @@ import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   QuestionCircleOutlined,
-  ColumnWidthOutlined,
-  SettingOutlined,
-  ReloadOutlined,
 } from "@ant-design/icons";
 import MessageTemplate from "./MessageTemplate";
 import "./PageMessage.less";
@@ -330,9 +325,9 @@ const PageMessageManagement = (props) => {
             </Radio.Button>
           ))}
         </Radio.Group>
-        {!messageManagement && (
+        {messageManagement && (
           <Button
-            className="fr message-management-btn"
+           style={{ marginLeft: "1300px" }}
             onClick={() => {
               props.onChangeType("messageList");
             }}

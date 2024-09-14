@@ -7,7 +7,7 @@ import { QuestionCircleOutlined } from "@ant-design/icons";
 import Circle from "./Circle";
 import DetailModal from "./DetailModal";
 const PageMessageList = (props) => {
-    const [checkedColumns, setCheckedColumns] = useState([
+  const [checkedColumns, setCheckedColumns] = useState([
     "content",
     "createTime",
     "typeName",
@@ -29,21 +29,20 @@ const PageMessageList = (props) => {
     pageSizeOptions: ["15", "30", "40", "50"],
     total: 0,
   });
-  const isReadChange=(s)=>{
-setIsRead(s)
-  }
+  const isReadChange = (s) => {
+    setIsRead(s);
+  };
   //过滤数据
-  let messageListArr=messageList.filter(item=>{
-    if(isRead==="all"){
-      return true
-    }else if(isRead==="false"){
-         return item.isRead===false
-    }else{
-        return item.isRead===true
+  let messageListArr = messageList.filter((item) => {
+    if (isRead === "all") {
+      return true;
+    } else if (isRead === "false") {
+      return item.isRead === false;
+    } else {
+      return item.isRead === true;
     }
-   
-  })
-  
+  });
+
   const customMouseTipInfo = (text, styleClass) => {
     let tipText = (
       <span
@@ -74,8 +73,8 @@ setIsRead(s)
     );
   };
   const showModal = (record) => {
-    setVisible(true)
-    setRecordData(record)
+    setVisible(true);
+    setRecordData(record);
   };
   const columns = [
     {
@@ -86,7 +85,7 @@ setIsRead(s)
         return (
           <>
             {record.isRead === false && <Circle color={"blue"} />}
-            <span onClick={()=>showModal(record)} className="pointer">
+            <span onClick={() => showModal(record)} className="pointer">
               {customMouseTipInfo(text)}
             </span>
           </>
@@ -114,10 +113,10 @@ setIsRead(s)
     setSearchFormData(allValues);
   };
   //过滤数据
-  const [key,setKey]=useState('');
+  const [key, setKey] = useState("");
   const onChangeTab = (key) => {
-   console.log(key);
-   setKey(key);
+    console.log(key);
+    setKey(key);
   };
   const onOperation = (type) => {
     console.log(type);
@@ -163,12 +162,13 @@ setIsRead(s)
     columnWidth: 60,
     fixed: true,
     selectedRowKeys: selectedRowKeys,
-    onChange: onSelectRowsChange
+    onChange: onSelectRowsChange,
   };
   const handleCancel = () => {
-    setVisible(false)
-    setRecordData({})
+    setVisible(false);
+    setRecordData({});
   };
+  
   return (
     <>
       <div className="message-list-header">
@@ -179,10 +179,14 @@ setIsRead(s)
           })}
         </Tabs>
         {messageManagement && (
-          <Button className="fr message-management-btn" onClick={()=>{
-                 props.onChangeType('messageManagement')
-
-          }}>消息管理</Button>
+          <Button
+            className="fr message-management-btn"
+            onClick={() => {
+              props.onChangeType("messageManagement");
+            }}
+          >
+            消息管理
+          </Button>
         )}
       </div>
       <div className="t-common-search-box">
@@ -215,14 +219,15 @@ setIsRead(s)
           ({ dataIndex }) => !dataIndex || checkedColumns.includes(dataIndex)
         )}
         dataSource={messageListArr}
+        rowSelection={rowSelection}
         pagination={pangation}
         rowKey={(record) => record.id}
       />
       <DetailModal
-      visible={visible}
-      title={"消息详情"}
-      formData={recordData}
-      onCancel={handleCancel}
+        visible={visible}
+        title={"消息详情"}
+        formData={recordData}
+        onCancel={handleCancel}
       />
     </>
   );
