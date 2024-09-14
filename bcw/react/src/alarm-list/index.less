@@ -1,0 +1,174 @@
+.t-alarm-list-page {
+    & .fr {
+      float: right;
+    }
+    & .mr16 {
+      margin-right: 16px;
+    }
+    & .min-w200 {
+      min-width: 200px;
+    }
+    & .t-common-box {
+      padding: 16px;
+      background-color: #fff;
+      border-radius: 6px;
+  
+      & .right-margin {
+        margin-right: 8px;
+      }
+    }
+    & .t-common-titlebar-box {
+      border-radius: 6px;
+      margin-bottom: 8px;
+      & .right-margin {
+        margin-right: 8px;
+      }
+    }
+    & .t-common-search-box {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 0 0 8px !important;
+      background-color: #fff;
+      line-height: 60px;
+      & .right-margin {
+        margin-right: 8px;
+      }
+      //搜索框样式
+      & .t-common-search-form {
+        line-height: 44px;
+        & .ant-form-item {
+          margin-bottom: 0;
+          margin-right: 20px;
+          vertical-align: middle;
+          & .t-end-date {
+            margin-right: 0;
+          }
+          & .ant-select,
+          .ant-calendar-picker {
+            width: 160px !important;
+          }
+        }
+        & .ant-form-item .ant-calendar-picker {
+          width: 320px !important;
+          .ant-calendar-picker-input {
+            width: 320px !important;
+          }
+        }
+  
+     
+      }
+  
+      & .t-btn {
+        min-width: 120px;
+        height: 44px;
+        line-height: 44px;
+        text-align: right;
+        .more {
+          width: 100px;
+        }
+      }
+    }
+  
+    & .t-btn-box {
+      line-height: 36px;
+      margin-bottom: 8px;
+      color: #000;
+      font-size: 16px;
+      & span {
+        font-weight: bold;
+      }
+    }
+    .t-table-tooltip {
+      & > .anticon,
+      .iconfont {
+        padding: 5px;
+        border: 1px solid #cacfdb;
+        font-size: 16px;
+        color: #35383f;
+        cursor: pointer;
+      }
+      & > .anticon + .anticon {
+        margin-left: 16px;
+      }
+      & > .iconfont + .iconfont {
+        margin-left: 16px;
+      }
+  
+      & > .ant-divider-vertical {
+        margin: 0 16px;
+        height: 32px;
+        top: -2px;
+        color: #cacfdb;
+      }
+    }
+  
+    .t-column-menu {
+      width: 80px;
+      text-align: center;
+      .ant-dropdown-menu-item {
+        text-align: center;
+        &:hover {
+          color: var(--primary-color, #325cf1);
+        }
+      }
+      .height-selected {
+        color: var(--primary-color, #325cf1);
+        background-color: #f0f5ff;
+      }
+    }
+  
+    .t-table-tooltip-set {
+      .ant-popover-title > div {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  
+    .t-table-height-default {
+      .ant-table-tbody {
+        .ant-table-row,
+        .ant-table-row > tr {
+          height: 40px;
+        }
+      }
+      .ant-table-fixed {
+        .ant-table-row,
+        .ant-table-row > tr {
+          height: 40px;
+        }
+      }
+    }
+  
+    .t-table-height-middle {
+      .ant-table-tbody {
+        .ant-table-row,
+        .ant-table-row > tr {
+          height: 46px;
+        }
+      }
+      .ant-table-fixed {
+        .ant-table-row,
+        .ant-table-row > tr {
+          height: 46px;
+        }
+      }
+    }
+  
+    .t-table-height-high {
+      .ant-table-tbody {
+        .ant-table-row,
+        .ant-table-row > tr {
+          height: 54px;
+        }
+      }
+      .ant-table-fixed {
+        .ant-table-row,
+        .ant-table-row > tr {
+          height: 54px;
+        }
+      }
+    }
+  }
+  
