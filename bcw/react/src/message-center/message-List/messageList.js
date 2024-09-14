@@ -29,6 +29,21 @@ const PageMessageList = (props) => {
     pageSizeOptions: ["15", "30", "40", "50"],
     total: 0,
   });
+  const isReadChange=(s)=>{
+setIsRead(s)
+  }
+  //过滤数据
+  let messageListArr=messageList.filter(item=>{
+    if(isRead==="all"){
+      return true
+    }else if(isRead==="false"){
+         return item.isRead===false
+    }else{
+        return item.isRead===true
+    }
+   
+  })
+  
   const customMouseTipInfo = (text, styleClass) => {
     let tipText = (
       <span
@@ -98,7 +113,12 @@ const PageMessageList = (props) => {
   const onValueChange = (changeValues, allValues) => {
     setSearchFormData(allValues);
   };
-  const onChangeTab = (key) => {};
+  //过滤数据
+  const [key,setKey]=useState('');
+  const onChangeTab = (key) => {
+   console.log(key);
+   setKey(key);
+  };
   const onOperation = (type) => {
     console.log(type);
     if (type !== "allread" && !selectedRowKeys.length) {
@@ -171,6 +191,7 @@ const PageMessageList = (props) => {
           searchFormData={searchFormData}
           scenesTypeList={scenesTypeList}
           changeValues={onValueChange}
+          isReadChange={isReadChange}
         />
         <div>
           {deleteMessage && (
@@ -193,7 +214,7 @@ const PageMessageList = (props) => {
         columns={columns.filter(
           ({ dataIndex }) => !dataIndex || checkedColumns.includes(dataIndex)
         )}
-        dataSource={messageList}
+        dataSource={messageListArr}
         pagination={pangation}
         rowKey={(record) => record.id}
       />

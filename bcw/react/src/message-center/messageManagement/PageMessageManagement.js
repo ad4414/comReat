@@ -290,18 +290,27 @@ const PageMessageManagement = (props) => {
       },
     },
   ];
-  //过滤逻辑
-  let dataSourceArr = dataSource.filter((item) => {
-    if (scenesCode !== "") {
-      return item.scenesCode === scenesCode;
-    } else {
-      return true;
-    }
-  });
+  
+  
   // 隐藏外发渠道
   hideOutboundChannel && columns.splice(7, 1);
   // 没有管理权限，则隐藏操作项
   !messageManagement && columns.pop();
+  //状态
+  //过滤逻辑
+  const [status,setStatus]=useState("all")
+  let dataSourceArr = dataSource.filter((item) => {
+    if (scenesCode !== "") {
+      return item.scenesCode === scenesCode;
+    } else if (status === "all") {
+       return true;
+    }else if(status==="true"){
+      return item.enable===true
+    }else {
+      return item.enable===false
+    }
+     
+  });
   return (
     <div className="message-management-box">
       <div className="mb16 btn-group">
@@ -339,7 +348,7 @@ const PageMessageManagement = (props) => {
             defaultValue="all"
             style={{ width: 230 }}
             getPopupContainer={(trigger) => trigger.parentNode}
-            onChange={(e) => {console.log(e);
+            onChange={(e) => { setStatus(e);
             }
 }
           >

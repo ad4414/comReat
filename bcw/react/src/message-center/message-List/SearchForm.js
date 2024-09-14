@@ -1,18 +1,15 @@
-import React from "react";
+import React,{useState} from "react";
 import { Form, Input, Select } from "antd";
 const SearchForm = (props) => {
   const onSearch = (e) => {
-    new Promise((resolve) => {
-      resolve("");
-    }).then((data) => {
-      onSearch(1);
-    });
+ 
   };
+  
   return (
     <Form className="t-common-search-form" layout="inline">
       <Form.Item
         name="typeName"
-        initialValue={""}
+        initialValue={"全部"}
         rules={[{ required: false }]}
       >
         <Select
@@ -39,8 +36,9 @@ const SearchForm = (props) => {
       >
         <Select
           placeholder="状态:"
-          onChange={onSearch}
+          onChange={(e)=>props.isReadChange(e)}
           getPopupContainer={(trigger) => trigger.parentNode}
+          
         >
           <Select.Option value="all">
             <span className="placeholder">状态: </span>全部{" "}
