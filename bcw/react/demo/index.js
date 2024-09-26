@@ -9,6 +9,7 @@ import { audData, columns } from "../src/alarm-list/data";
 import AlarmSetting from "../src/alarm-setting/alarmSetting";
 import { alarmSettingColumn } from "../src/alarm-setting/data";
 import PageMessage from "../src/message-center/PageMessage";
+import PageCaughtDownload from "../src/caught/PageCaughDownload";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const operation = [
   {
@@ -73,21 +74,22 @@ const logClassifyArr = [
   },
 ];
 root.render(
-  <React.StrictMode>
-    {/*    <PageAudit
+   <React.StrictMode>
+       {/*  <PageAudit
       showTableTooltip={true}
       operation={operation}
       alarmLevels={alarmLevels}
       logClassifyArr={logClassifyArr}
       columns={columns}
       audData={audData}
-    /> */}
+    />  */}
     {/* <AlarmSetting alarmSettingColumn={alarmSettingColumn} /> */}
-   
-    <PageMessage   showEditRole={true}
+    
+{/*     <PageMessage   showEditRole={true}
       PageMessageManagement={false}
       hideOutboundChannel={false}
       showTableTooltip={true}
-      messageManagement={true}/>
+      messageManagement={true}/>  */}
+      <PageCaughtDownload del={true} download={true} excute={true}/>
   </React.StrictMode>
 );

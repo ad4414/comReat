@@ -1,7 +1,6 @@
 import SearchConditionForm from "./SearchConditionForm";
 import React, { useState } from "react";
 import { Table } from "antd";
-import dayjs from "dayjs";
 import "./index.less";
 const PageAudit = (props) => {
   const {
@@ -24,7 +23,6 @@ const PageAudit = (props) => {
     "userName",
     "ip",
   ];
-  const [searchFormData, setSearchFormData] = useState({});
   const [pagination, setPagination] = useState({
     showSizeChanger: true,
     showTotal: (total) => "总共" + ` ${total} ` + "条",
@@ -32,55 +30,41 @@ const PageAudit = (props) => {
     total: 0,
   });
   const onSearch = (data) => {
-    let nowData = dataSource ? dataSource : audData;
-    console.log(nowData);
+    console.log(data);
     if (data.level) {
-      let currentData = nowData.filter((item) => {
+      data = dataSource.filter((item) => {
         return item.eventLevelCode === data.level;
       });
-      setDataSource(currentData);
+      setDataSource(data);
     } else if (data.logClassify) {
-      let label;
-      logClassifyArr.forEach((item) => {
-        if (item.value === data.logClassify) {
-          label = item.label;
-        }
+      let label = logClassifyArr.filter((item) => {
+        return item.value === data.logClassify;
       });
-      console.log(label);
-      let currentData = nowData.filter((item) => {
-        return item.logClassify === label;
+      data = dataSource.filter((item) => {
+        return item.logClassify === label[0].label;
       });
-      setDataSource(currentData ? currentData : audData);
+      setDataSource(data);
     } else if (data.time) {
-      data.time = data.time.map((item) => {
-        item = dayjs(item).format("YYYY-MM-DD HH:mm:ss");
-        console.log(new Date(item).getTime());
-        return new Date(item).getTime();
-      });
-      console.log(data.time);
-      let currentData = dataSource.filter((item) => {
+      data = dataSource.filter((item) => {
         return (
           item.createTime >= data.time[0] && item.createTime <= data.time[1]
         );
       });
-      setDataSource(currentData);
-    } else {
+      setDataSource(data);
+    }else{
       setDataSource(audData);
     }
-    setSearchFormData(data);
   };
- 
-  const [checkedList,setCheckedList] = useState(columns.map(item=>item.key));
-  const handChange=(checkedList)=>{
+  const [checkedList, setCheckedList] = useState(
+    columns.map((item) => item.key)
+  );
+  const handChange = (checkedList) => {
     setCheckedList(checkedList);
-  }
-  console.log(checkedList);
+  };
   const newColumns = columns.map((item) => ({
     ...item,
     hidden: !checkedList.includes(item.key),
   }));
-  console.log(newColumns);
-  
   return (
     <div className="t-alarm-list-page">
       <div className="t-common-box">

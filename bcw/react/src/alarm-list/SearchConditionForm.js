@@ -7,9 +7,7 @@ import {
   Input,
   Popover,
   Dropdown,
-  Menu,
-  Checkbox,
-  Grid,
+  Checkbox
 } from "antd";
 import {
   ReloadOutlined,
@@ -17,11 +15,9 @@ import {
   ColumnWidthOutlined,
 } from "@ant-design/icons";
 const { Option } = Select;
-const { Row } = Grid;
 import "./index.less";
 const SearchConditionForm = (props) => {
   const { logClassifyArr, operation, alarmLevels, columns } = props;
-
   const [form] = Form.useForm();
   const [key, setKey] = useState("");
   const addBefore = (
@@ -42,7 +38,6 @@ const SearchConditionForm = (props) => {
       })}
     </Select>
   );
-
   const [checkList, setCheckList] = useState(
     columns.map(({ key }) => {
       return key;
@@ -51,11 +46,8 @@ const SearchConditionForm = (props) => {
   const checkAll = columns.length === checkList.length;
   const indeterminate =
     checkList.length > 0 && checkList.length < columns.length;
-  console.log(checkList);
-
   const onChange = (checkedList) => {
     console.log(checkedList);
-
     setCheckList(checkedList);
     props.handChangeList(checkedList);
   };
@@ -72,8 +64,6 @@ const SearchConditionForm = (props) => {
     </div>
   );
   const onCheckAllChange = (e) => {
-    console.log(e.target.checked);
-
     setCheckList(e.target.checked ? columns.map((item) => item.key) : []);
     props.handChangeList(
       e.target.checked ? columns.map((item) => item.key) : []

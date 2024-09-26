@@ -37,6 +37,7 @@ const PageMessageManagement = (props) => {
     messageManagement,
     showTableTooltip,
   } = props;
+  
   const [roleVisible, setRoleVisible] = useState(false);
   const [roleChangeId, setRoleChangeId] = useState(null);
   const [roleChangeIds, setRoleChangeIds] = useState([]);
@@ -80,6 +81,21 @@ const PageMessageManagement = (props) => {
       }
     }
   };
+  //状态
+  //过滤逻辑
+  const [status,setStatus]=useState("all")
+  let dataSourceArr = dataSource.filter((item) => {
+    if (scenesCode !== "") {
+      return item.scenesCode === scenesCode;
+    } else if (status === "all") {
+       return true;
+    }else if(status==="true"){
+      return item.enable===true
+    }else {
+      return item.enable===false
+    }
+     
+  });
   //为全部类型时，渲染方式改变
   const renderCardListData = (scenesCode, cardListData) => {
     if (!scenesCode) {
@@ -111,7 +127,6 @@ const PageMessageManagement = (props) => {
                     >
                       <MessageTemplate
                         data={item}
-                        levelArr={levelArr}
                         mailListArr={maiListArr}
                         hideOutboundChannel={hideOutboundChannel}
                         operation={{
@@ -291,21 +306,7 @@ const PageMessageManagement = (props) => {
   hideOutboundChannel && columns.splice(7, 1);
   // 没有管理权限，则隐藏操作项
   !messageManagement && columns.pop();
-  //状态
-  //过滤逻辑
-  const [status,setStatus]=useState("all")
-  let dataSourceArr = dataSource.filter((item) => {
-    if (scenesCode !== "") {
-      return item.scenesCode === scenesCode;
-    } else if (status === "all") {
-       return true;
-    }else if(status==="true"){
-      return item.enable===true
-    }else {
-      return item.enable===false
-    }
-     
-  });
+  
   return (
     <div className="message-management-box">
       <div className="mb16 btn-group">
@@ -401,7 +402,7 @@ const PageMessageManagement = (props) => {
             {!scenesCode && renderCardListData(scenesCode, dataSource)}
             {scenesCode && (
               <Row>
-                {dataSource.map((item) => {
+                {dataSourceArr.map((item) => {
                   return (
                     <Col
                       key={item.id}
@@ -410,7 +411,6 @@ const PageMessageManagement = (props) => {
                     >
                       <MessageTemplate
                         data={item}
-                        editRole={editRole}
                         showEditRole={showEditRole}
                         operation={{
                           onOpenMessage: onOpenMessage,

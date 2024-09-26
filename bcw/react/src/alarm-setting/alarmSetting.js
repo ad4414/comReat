@@ -33,6 +33,7 @@ const AlarmSetting = (props) => {
         rowKey={(recordRow) => recordRow.id}
         columns={alarmSettingColumn}
         dataSource={data}
+        defaultExpandAllRows={true}
         expandable={{
           expandedRowRender: (recordRow) => {
             return (
@@ -46,6 +47,7 @@ const AlarmSetting = (props) => {
                 rowKey={(record) => record.id}
                 dataSource={recordRow.systemAlarmConfigTOList}
                 pagination={false}
+                 
               />
             );
           },

@@ -21,8 +21,6 @@ const OutgoingChannel = (props) => {
   const onOk = () => {
     form.validateFields().then((values) => {
       console.log(values);
-      
-       
     });
   };
   const [form] = Form.useForm();

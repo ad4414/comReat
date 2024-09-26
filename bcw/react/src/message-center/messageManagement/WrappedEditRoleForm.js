@@ -1,11 +1,5 @@
 import React, { useState } from "react";
 import {
-  Form,
-  Input,
-  Select,
-  Button,
-  Row,
-  Col,
   Modal,
   Transfer,
   message,

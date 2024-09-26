@@ -180,17 +180,17 @@ const AlarmModal = (props) => {
           <Select options={alarmLevel} />
         </Form.Item>
         {!editIs_LICENSE && (
-          <Form.Item {...formItemLayout} label="触发条件">
-            连续检测到{" "}
+          <Form.Item {...formItemLayout} label="触发条件"  >
+           连续检测到{" "}
             <Form.Item
-              style={{ display: "inline-block" }}
+              style={{ display: "inline-block",marginBottom:"15px" }}
               name="alarmCondition"
               rules={[{ required: true, message: "请输入" }]}
             >
               <InputNumber
                 placeholder="请输入"
                 autoComplete="off"
-                style={{ width: 150 }}
+                style={{ width: 150  }}
                 min={3}
                 precision={0}
                 max={10}

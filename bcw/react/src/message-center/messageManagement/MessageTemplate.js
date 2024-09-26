@@ -1,9 +1,14 @@
 import React from "react";
 import { Switch, Row, Col, Tooltip } from "antd";
+import { levelArr } from "../data";
 const MessageTemplate = (props) => {
-  const { data, operation, levelArr, hideOutboundChannel } = props;
-  console.log(data);
-
+  const {
+    data,
+    operation,   
+    hideOutboundChannel = true,
+    mailListArr,
+  } = props;
+  console.log(levelArr);
   const {
     id,
     name,
@@ -28,6 +33,8 @@ const MessageTemplate = (props) => {
   const moduleText = moduleNameList.length ? moduleNameList.join(",") : "全部";
   const levelValue = (levelArr.find((item) => item.dictCode == level) || {})
     .dictValue;
+    console.log(levelValue);
+    
   const levelToValue = (levelArr.find((item) => item.dictCode == levelTo) || {})
     .dictValue;
   const levelText = levelValue
@@ -151,18 +158,18 @@ const MessageTemplate = (props) => {
             <div className="operation-divider"></div>
           </Col>
           <Col span={8} className="col-operation">
-              {isPreset ? (
-                <a style={{ color: "#999" }}>删除</a>
-              ) : (
-                <a
-                  onClick={() => {
-                    operation.editCopyDeleteShow("delete", id);
-                  }}
-                >
-                 删除
-                </a>
-              )}
-            </Col>
+            {isPreset ? (
+              <a style={{ color: "#999" }}>删除</a>
+            ) : (
+              <a
+                onClick={() => {
+                  operation.editCopyDeleteShow("delete", id);
+                }}
+              >
+                删除
+              </a>
+            )}
+          </Col>
         </Row>
       </div>
     </div>
